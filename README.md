@@ -1,4 +1,16 @@
 ```
+## 1. Project Overview
+
+## 2. How the Game Works
+
+# Deep Reinforcement Learning On Flappy bird
+
+# Game Project Report - Azan Korejo
+
+```
+
+
+```
 This project is all about building a game inspired by the Flappy Bird classic, using Python
 and the pygame library. The focus here was on refactoring the code to follow an object-
 oriented approach, which helps make the game more manageable and scalable. By
@@ -42,16 +54,7 @@ For example
 collisions^
 1 The game state keeps track of the score, handles pausing, and resets the game when
 the bird dies.
-```
-## 1. Project Overview
 
-## 2. How the Game Works
-
-# Deep Reinforcement Learning On Flappy bird
-
-# Game Project Report^1 Azan Korejo
-
-```
 2.3. Asset Management (Sprites and Images)
 
 The game needs images for everything—backgrounds, the bird, the pipes, etc. To keep

@@ -185,19 +185,19 @@ Deep Q-Network (DQN) Overview
 In our Flappy Bird project, we use a reinforcement learning algorithm called Deep Q-
 Network (DQN), which enables the bird to learn how to navigate the pipes through trial and
 error. Here’s a breakdown of how DQN is applied here
-? Q-Values and Q-Learning: Q-values represent the expected utility (or reward) for each
+1. Q-Values and Q-Learning: Q-values represent the expected utility (or reward) for each
 action the bird can take at each possible state of the game. The goal of Q-learning is to
 learn the Q-values by balancing exploration (trying new actions) and exploitation
 (choosing the best-known actions)^
-6 Deep Q-Network (DQN): In DQN, instead of storing Q-values for every state-action pair
+2. Deep Q-Network (DQN): In DQN, instead of storing Q-values for every state-action pair
 (which is impossible for complex environments), we use a neural network to
 approximate Q-values. Here, the network maps the current game state to Q-values for
 each action (flap or no-flap)^
-m Experience Replay: During training, each frame (state) and the corresponding actions
+3. Experience Replay: During training, each frame (state) and the corresponding actions
 and rewards are stored in memory, allowing the agent to learn from past experiences.
 The DQN replays these stored experiences in batches, which helps in reducing data
 correlation and stabilizing learning^
- Target Network: To stabilize training, a separate target network is used, which is
+4. Target Network: To stabilize training, a separate target network is used, which is
 updated less frequently than the main network. This target network helps in more
 consistent Q-value updates by reducing oscillations in the Q-learning process.
 
@@ -207,20 +207,20 @@ consistent Q-value updates by reducing oscillations in the Q-learning process.
 Algorithm Implementation Details
 
 The DQN algorithm is implemented using the following approach
-? Initialize Networks: Two neural networks are set up—a primary network that
+1. Initialize Networks: Two neural networks are set up—a primary network that
 approximates Q-values and a target network for stabilizing learning. Both networks
 have weights initialized randomly^
-6 Define Rewards and States: Rewards in the Flappy Bird environment are
+2. Define Rewards and States: Rewards in the Flappy Bird environment are
 O + 1 reward when the bird passes a pipe (success)^
 O +0.1 reward for survival (to encourage longer survival)^
 O -1 reward when the bird crashes^
 m Training Steps(
 1 Each frame represents a single time step where the bird observes its current state^
-1 The agent chooses an action based on the current Q-values^
-1 If the agent flaps, it receives an updated vertical velocity and position^
-1 After the action is taken, the agent observes the new state and receives a reward^
-1 The experience is stored in memory^
-1 The network is trained by randomly sampling experiences from memory to avoid
+2 The agent chooses an action based on the current Q-values^
+3 If the agent flaps, it receives an updated vertical velocity and position^
+4 After the action is taken, the agent observes the new state and receives a reward^
+5 The experience is stored in memory^
+6 The network is trained by randomly sampling experiences from memory to avoid
 correlation^
 1 The Q-values are updated by minimizing the difference between predicted Q-values
 and target Q-values calculated from the target network.
@@ -238,7 +238,7 @@ actions.
 ```
 This project’s DRL component, specifically in using Deep Q-Networks (DQN) for
 Flappy Bird, introduced a few key challenges that required special attention
-? Exploration-Exploitation Balance:
+1. Exploration-Exploitation Balance:
 The decision-making process in reinforcement learning hinges on balancing
 exploration (trying new moves) with exploitation (repeating known successful
 actions). In a game like Flappy Bird, where the objective is to avoid pipes while
@@ -246,21 +246,21 @@ maximizing score, over-exploring can lead to numerous failures without much
 reward, while over-exploiting can make the agent fail to generalize effectively to
 various pipe configurations. Adjusting the epsilon-greedy policy parameters to
 achieve this balance was a meticulous task^
-6 Sparse Rewards:
+2. Sparse Rewards:
 Rewards in the game are sparse—only granted when passing through pipes—
 making it difficult for the model to learn effectively in early stages. This required
 reward shaping, where incremental rewards were given based on proximity to
 pipes, which encouraged the agent to survive longer. This technique helped
 provide the model with enough feedback to understand that staying alive longer
 was part of achieving higher rewards^
-m Non-Stationary Environment:
+3. Non-Stationary Environment:
 The environment in Flappy Bird changes dynamically with each frame, as pipes
 move towards the player, who also moves up or down. This non-stationarity can
 make it hard for the DQN agent to learn stable policies, as it constantly needs to
 adapt to changes in state values over time. We addressed this by using
 experience replay and updating the Q-network less frequently to smooth out the
 learning process^
- Training Instability:
+4. Training Instability:
 DQNs are known to be unstable during training, especially with complex
 environments. The fluctuating nature of Flappy Bird’s gameplay (e.g., the random
 placement of pipes) increased the volatility in learning, often leading to erratic
@@ -270,7 +270,7 @@ helping to improve the stability and efficiency of learning.
 
 ```
 ```
-x Memory Constraints:
+5. Memory Constraints:
 Managing memory was another consideration due to the experience replay
 mechanism, where storing every state-action-reward sequence could become
 resource-intensive. We optimized this by periodically pruning less relevant
@@ -278,7 +278,7 @@ experiences from the memory buffer, retaining recent and diverse experiences
 that helped in fine-tuning the model^
 ```
 ```
-] Hyperparameter Tuning:
+6. Hyperparameter Tuning:
 Finding the right hyperparameters, including learning rate, discount factor, and
 epsilon decay rate, was challenging. Each hyperparameter had a significant
 impact on performance. For instance, a high learning rate led to abrupt policy

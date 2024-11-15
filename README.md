@@ -32,10 +32,10 @@ rate here is set to 30 FPS, which keeps the gameplay smooth and consistent. The 
 loop does everything
 ```
 ```
-1 It listens for user input (flapping the bird)^
-1 It checks for collisions with pipes or the ground^
-1 It updates the bird’s position and pipes' movement^
-1 It refreshes the screen with new graphics and updates the score.
+1. It listens for user input (flapping the bird)^
+2. It checks for collisions with pipes or the ground^
+3. It updates the bird’s position and pipes' movement^
+4. It refreshes the screen with new graphics and updates the score.
 
 
 ```
